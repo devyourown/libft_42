@@ -6,7 +6,7 @@
 /*   By: hyojulee <hyojulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 11:03:20 by hyojulee          #+#    #+#             */
-/*   Updated: 2022/07/08 13:02:23 by hyojulee         ###   ########.fr       */
+/*   Updated: 2022/07/08 13:52:22 by hyojulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,13 +221,17 @@ void test_strtrim()
 {
 	name_test("strtrim test : ");
 	assert_str_equal("11122", ft_strtrim("  11122  a", "a "));
+	assert_str_equal("Hi My Name is", ft_strtrim("  Hi My Name is ", " "));
 }
 
 void test_split()
 {
 	name_test("split test : ");
-	//assert_str_equal("Hi", ft_split("Hi My Name is ", ' ')[0]);
-	printf("%s\n", ft_split("Hi My Name is ", ' ')[0]);
+	assert_str_equal("Hi", ft_split("    Hi My Name is ", ' ')[0]);
+	assert_str_equal("My", ft_split("Hi My Name is ", ' ')[1]);
+	assert_str_equal("Name", ft_split("Hi My Name is ", ' ')[2]);
+	assert_str_equal("is", ft_split("Hi My Name is ", ' ')[3]);
+	//ft_split("Hi My Name is ", ' ');
 }
 
 void test_substr()
@@ -277,5 +281,6 @@ int main(void)
 	test_strtrim();
 	test_split();
 	test_substr();
+	test_itoa();
 	return 0;
 }

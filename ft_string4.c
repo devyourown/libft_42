@@ -6,11 +6,12 @@
 /*   By: hyojulee <hyojulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 17:44:33 by hyojulee          #+#    #+#             */
-/*   Updated: 2022/07/08 12:30:52 by hyojulee         ###   ########.fr       */
+/*   Updated: 2022/07/08 14:15:58 by hyojulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
 void    *ft_memchr(const void *s, int c, size_t n)
 {
@@ -103,23 +104,44 @@ int     ft_atoi(const char * str)
 	return (result * is_minus);
 }
 
-char    *ft_itoa(int n)
+static size_t	get_size(int n)
 {
-	int		size;
-	int		is_minus;
-	char	*result;
+	size_t		result;
+	unsigned int temp;
 
-	result = NULL;
+	result = 1;
+	temp = n;
 	if (n < 0)
 	{
-		n = n * -1;
-		is_minus = 1;
+		result += 1;
+		temp = -n;
 	}
-	size = 1;
-	while (n)
+	while (temp > 10)
 	{
-		n %= 10;
-		
+		temp /= 10;
+		result++;
 	}
+	return (result);
+}
+
+char    *ft_itoa(int n)
+{
+	int				size;
+	char			*result;
+	unsigned int	temp;
+
+	size = get_size(n);
+	temp = n;
+	result = (char *)malloc(sizeof(char) * (size + 1));
+	if (n < 0)
+		temp = -n;
+	while (size != -1)
+	{
+		result[--size] = (temp % 10) + 48;
+		temp /= 10;
+	}
+	if (n < 0)
+		result[0] = '-';
+	result[size] = '\0';
 	return (result);
 }

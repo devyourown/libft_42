@@ -6,10 +6,11 @@
 /*   By: hyojulee <hyojulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:13:32 by hyojulee          #+#    #+#             */
-/*   Updated: 2022/07/08 12:54:35 by hyojulee         ###   ########.fr       */
+/*   Updated: 2022/07/08 13:50:09 by hyojulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include "libft.h"
 
 static size_t  get_num_of_words(char const * str, char delimeter)
@@ -25,7 +26,7 @@ static size_t  get_num_of_words(char const * str, char delimeter)
             result++;
         index++;
     }
-    return (result);
+    return (result + 1);
 }
 
 static size_t   get_size_of_word(char const * str, char end_point)
@@ -33,7 +34,7 @@ static size_t   get_size_of_word(char const * str, char end_point)
     size_t      result;
 
     result = 0;
-    while (str[result] != end_point)
+    while (str[result] && str[result] != end_point)
         result++;
     return (result);
 }
@@ -48,12 +49,12 @@ char    **ft_split(char const *s, char c)
 
     temp = &c;
     trimmed = ft_strtrim(s, temp);
-    result = (char **)malloc(sizeof(char *) * (get_num_of_words(trimmed, c) + 2));
+    result = (char **)malloc(sizeof(char *) * (get_num_of_words(trimmed, c) + 1));
     if (!result)
         return (NULL);
     str_index = 0;
     index = 0;
-    while (index < get_num_of_words(trimmed, c) + 1)
+    while (index < get_num_of_words(trimmed, c) && str_index < ft_strlen(trimmed))
     {
         result[index++] = ft_substr(trimmed, str_index, get_size_of_word(&trimmed[str_index], c));
         str_index = str_index + get_size_of_word(&trimmed[str_index], c) + 1;
