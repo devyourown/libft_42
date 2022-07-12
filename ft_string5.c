@@ -6,11 +6,10 @@
 /*   By: hyojulee <hyojulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:13:32 by hyojulee          #+#    #+#             */
-/*   Updated: 2022/07/08 13:50:09 by hyojulee         ###   ########.fr       */
+/*   Updated: 2022/07/08 14:18:29 by hyojulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "libft.h"
 
 static size_t  get_num_of_words(char const * str, char delimeter)
@@ -61,4 +60,46 @@ char    **ft_split(char const *s, char c)
     }
     result[index] = 0;
     return (result);
+}
+
+static size_t	get_size(int n)
+{
+	size_t		result;
+	unsigned int temp;
+
+	result = 1;
+	temp = n;
+	if (n < 0)
+	{
+		result += 1;
+		temp = -n;
+	}
+	while (temp > 10)
+	{
+		temp /= 10;
+		result++;
+	}
+	return (result);
+}
+
+char    *ft_itoa(int n)
+{
+	int				size;
+	char			*result;
+	unsigned int	temp;
+
+	size = get_size(n);
+	temp = n;
+	result = (char *)malloc(sizeof(char) * (size + 1));
+	if (n < 0)
+		temp = -n;
+	while (size != -1)
+	{
+		result[--size] = (temp % 10) + 48;
+		temp /= 10;
+	}
+	if (n < 0)
+		result[0] = '-';
+	result[size] = '\0';
+	return (result);
 }

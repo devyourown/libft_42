@@ -6,7 +6,7 @@
 /*   By: hyojulee <hyojulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 11:03:20 by hyojulee          #+#    #+#             */
-/*   Updated: 2022/07/08 13:52:22 by hyojulee         ###   ########.fr       */
+/*   Updated: 2022/07/12 11:25:58 by hyojulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -250,6 +250,15 @@ void test_itoa()
 	assert_str_equal("2147483647", ft_itoa(MAX_INT));
 }
 
+void	test_file()
+{
+	name_test("file.c test : ");
+	ft_putchar_fd('h', 1);
+	ft_putstr_fd("test", 1);
+	ft_putendl_fd("the next one", 1);
+	ft_putnbr_fd(-12345, 1);
+}
+
 void suite_part1()
 {
 	test_is_alpha();
@@ -282,5 +291,7 @@ int main(void)
 	test_split();
 	test_substr();
 	test_itoa();
+	//test_file();
+
 	return 0;
 }

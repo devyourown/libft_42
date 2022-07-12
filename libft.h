@@ -6,7 +6,7 @@
 /*   By: hyojulee <hyojulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 10:59:42 by hyojulee          #+#    #+#             */
-/*   Updated: 2022/07/08 12:48:32 by hyojulee         ###   ########.fr       */
+/*   Updated: 2022/07/12 11:17:38 by hyojulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,12 @@
 
 # define    MAX_INT 2147483647
 # define    MIN_INT -2147483648
+
+typedef struct  s_list
+{
+    void            *content;
+    struct s_list   *next;
+}           t_list;
 
 int	ft_isalpha(int num);
 int	ft_isdigit(int num);
@@ -51,5 +57,12 @@ char    *ft_substr(char const *s, size_t start, size_t len);
 char    *ft_strjoin(char const *s1, char const *s2);
 char    *ft_strtrim(char const * s1, char const *set);
 char    **ft_split(char const *s, char c);
+char    *ft_strmapi(char const *s, char (*f)(unsigned int, char));
+void    ft_striteri(char *s, void (*f)(unsigned int, char *));
+
+void    ft_putchar_fd(char c, int fd);
+void    ft_putstr_fd(char *s, int fd);
+void    ft_putendl_fd(char *s, int fd);
+void    ft_putnbr_fd(int n, int fd);
 
 #endif
